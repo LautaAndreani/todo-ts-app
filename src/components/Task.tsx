@@ -1,12 +1,12 @@
 import trash from "../assets/icons/trash.svg"
+import { Task as TaskTypes } from "../types/types"
 
-interface Task {
-	task: string
-	completed: boolean
-	id: string
+type Props = {
+	task: TaskTypes
+	handleCompleted: (task: TaskTypes) => void
+	handleDelete?: (task: TaskTypes) => void
+	showCompleted?: boolean
 }
-
-type Props = { task: Task; handleCompleted: (task: Task) => void; handleDelete?: (task: Task) => void; showCompleted?: boolean }
 
 export default function Task({ handleCompleted, handleDelete = () => {}, task, showCompleted = false }: Props) {
 	return (
