@@ -14,8 +14,9 @@ type Props = {
 	setTasks: React.Dispatch<React.SetStateAction<Task[]>>
 	handleCompleted: (task: Task) => void
 	showActive?: boolean
+	showCompleted?: boolean
 }
-export default function AllTasks({ setTasks, tasks = [], handleCompleted, showActive = false }: Props) {
+export default function AllTasks({ setTasks, tasks = [], handleCompleted, showActive = false, showCompleted = false }: Props) {
 	const [task, setUserTask] = useState("")
 	const getUserTask = (e: React.ChangeEvent<HTMLInputElement>) => setUserTask(e.target.value)
 
@@ -26,7 +27,7 @@ export default function AllTasks({ setTasks, tasks = [], handleCompleted, showAc
 		setTasks([...tasks, newTask])
 	}
 	if (showActive) {
-		const getOnlyTasksCompleted = tasks.filter(task => !task.completed)
+		const getOnlyActives = tasks.filter(task => !task.completed)
 		return (
 			<div className="all-container">
 				<form className="all" onSubmit={handleTask}>
@@ -36,12 +37,25 @@ export default function AllTasks({ setTasks, tasks = [], handleCompleted, showAc
 					</button>
 				</form>
 				<div className="tasks">
-					{getOnlyTasksCompleted.length ? (
-						getOnlyTasksCompleted.map(task => <Task task={task} key={task.id} handleCompleted={handleCompleted} />)
+					{getOnlyActives.length ? (
+						getOnlyActives.map(task => <Task task={task} key={task.id} handleCompleted={handleCompleted} />)
 					) : (
 						<p className="empty-active">You have 0 active tasks</p>
 					)}
 				</div>
+			</div>
+		)
+	}
+
+	if (showCompleted) {
+		const getOnlyCompleted = tasks.filter(task => task.completed)
+		return (
+			<div className="tasks">
+				{getOnlyCompleted.length ? (
+					getOnlyCompleted.map(task => <Task task={task} key={task.id} handleCompleted={handleCompleted} showCompleted />)
+				) : (
+					<p className="empty-active">You have 0 completed tasks</p>
+				)}
 			</div>
 		)
 	}

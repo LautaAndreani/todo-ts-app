@@ -111,6 +111,7 @@ form > input[type="text"] {
 	flex-direction: column;
 	gap: 0.5rem;
 	padding: 0 1rem;
+	margin-top: 0.5rem;
 }
 
 .task-label {
@@ -121,4 +122,24 @@ form > input[type="text"] {
 	text-align: center;
 	color: var(--error);
 	font-weight: bold;
+	margin-top: 1rem;
+}
+
+.task-container {
+	display: flex;
+	justify-content: space-between;
+}
+.task-container > button {
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+.task-container > button > img {
+	width: 1.3rem;
+	filter: invert(0.4);
+}
+
+.task-checked {
+	text-decoration: line-through;
 }

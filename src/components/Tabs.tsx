@@ -20,10 +20,11 @@ export default function Tabs() {
 		const getTask = tasks.find(task => task.id === taskCompleted.id)
 		getTask ? (getTask.completed = !getTask.completed) : null
 	}
+
 	const contentTabs = {
 		All: () => <AllTasks setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} />,
 		Active: () => <AllTasks setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} showActive />,
-		Completed: () => <p>I'm completed tasks</p>,
+		Completed: () => <AllTasks setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} showCompleted />,
 	}
 	const ActualContentTab = contentTabs[actualTab]
 
