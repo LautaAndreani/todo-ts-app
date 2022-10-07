@@ -1,8 +1,9 @@
 import { useState } from "react"
+import { Task } from "../types/types"
 import AllTasks from "./All"
 import Tab from "./Tab"
+
 import { nanoid } from "nanoid"
-import { Task } from "../types/types"
 
 type ActualTabs = "All" | "Active" | "Completed"
 const tabs: ActualTabs[] = ["All", "Active", "Completed"]

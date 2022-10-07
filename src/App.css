@@ -66,7 +66,9 @@ h1 {
 .tab {
 	padding: 1rem;
 	cursor: pointer;
-	margin-left: 1rem;
+	font-weight: 600;
+	margin: 0 2rem;
+	font-size: 0.8rem;
 }
 
 .selected-tab {
@@ -171,4 +173,18 @@ form > input[type="text"] {
 .delete-all-icon {
 	width: 1rem;
 	filter: invert(1);
+}
+
+@media screen and (max-width: 1200px) {
+	.tab-container {
+		width: 60%;
+	}
+}
+@media screen and (max-width: 500px) {
+	.container {
+		min-width: 100%;
+	}
+	.tab-container {
+		width: 100%;
+	}
 }

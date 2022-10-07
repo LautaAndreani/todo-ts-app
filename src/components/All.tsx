@@ -1,9 +1,9 @@
 import { useState } from "react"
 import Task from "./Task"
-
-import { nanoid } from "nanoid"
 import DeleteBtn from "./DeleteButton"
 import { Task as TasksTypes } from "../types/types"
+
+import { nanoid } from "nanoid"
 
 type Props = {
 	tasks: TasksTypes[]
