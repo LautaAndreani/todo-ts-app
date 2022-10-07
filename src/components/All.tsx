@@ -32,7 +32,7 @@ export default function AllTasks({ setTasks, tasks = [], handleCompleted, showAc
 			<div className="all-container">
 				<form className="all" onSubmit={handleTask}>
 					<input type="text" className="all-input" placeholder="add details" autoFocus onChange={getUserTask} />
-					<button type="submit" className="all-input all-btn">
+					<button type="submit" className={`all-input all-btn ${!task ? "disabled-btn" : ""}`} disabled={!task}>
 						Add
 					</button>
 				</form>
@@ -69,7 +69,7 @@ export default function AllTasks({ setTasks, tasks = [], handleCompleted, showAc
 		<div className="all-container">
 			<form className="all" onSubmit={handleTask}>
 				<input type="text" className="all-input" placeholder="add details" autoFocus onChange={getUserTask} />
-				<button type="submit" className="all-input all-btn">
+				<button type="submit" className={`all-input all-btn ${!task ? "disabled-btn" : ""}`} disabled={!task}>
 					Add
 				</button>
 			</form>

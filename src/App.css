@@ -113,6 +113,12 @@ form > input[type="text"] {
 	box-shadow: 0px 2px 6px var(--btn-shadow);
 }
 
+.disabled-btn {
+	background-color: var(--light-gray);
+	box-shadow: none;
+	cursor: not-allowed;
+}
+
 /* tasks */
 .tasks {
 	display: flex;
