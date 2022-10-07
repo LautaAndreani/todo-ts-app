@@ -25,6 +25,10 @@ export default function AllTasks({ setTasks, tasks = [], handleCompleted, showAc
 	}
 
 	const handleDelete = (taskRemove: TasksTypes) => setTasks(tasks.filter(task => task.id !== taskRemove.id))
+	const handleDeleteCompleted = () => {
+		const getNotCompletes = tasks.filter(task => !task.completed)
+		setTasks(getNotCompletes)
+	}
 
 	if (showActive) {
 		const getOnlyActives = tasks.filter(task => !task.completed)
@@ -56,7 +60,7 @@ export default function AllTasks({ setTasks, tasks = [], handleCompleted, showAc
 						{getOnlyCompleted.map(task => (
 							<Task task={task} key={task.id} showCompleted handleCompleted={handleCompleted} handleDelete={handleDelete} />
 						))}
-						<DeleteBtn setTasks={setTasks} />
+						<DeleteBtn handleDeleteCompleted={handleDeleteCompleted} />
 					</div>
 				) : (
 					<p className="empty-active">You have 0 completed tasks</p>
