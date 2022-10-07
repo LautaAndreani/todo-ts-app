@@ -22,6 +22,7 @@
 }
 
 :root {
+	--body: #e4e4e4;
 	--black: #0000;
 	--gray: #333333;
 	--primary: #2f80ed;
@@ -29,7 +30,12 @@
 	--text: white;
 	--btn-shadow: rgba(127, 177, 243, 0.4);
 	--error: #eb5757;
+	--error-hover: #bd3a3a;
 	--border-size: 1px;
+}
+
+body {
+	background-color: var(--body);
 }
 
 .container {
@@ -94,7 +100,7 @@ form > input[type="text"] {
 }
 
 .all-input:focus {
-	outline: var(--border-size) solid var(--gray);
+	outline: var(--border-size) solid var(--primary);
 }
 
 .all-btn {
@@ -129,17 +135,41 @@ form > input[type="text"] {
 	display: flex;
 	justify-content: space-between;
 }
-.task-container > button {
+.task-delete {
 	border: none;
 	background: none;
 	cursor: pointer;
 }
 
-.task-container > button > img {
+.task-delete-icon {
 	width: 1.3rem;
 	filter: invert(0.4);
 }
 
 .task-checked {
 	text-decoration: line-through;
+}
+
+.tasks-delete-all {
+	display: flex;
+	justify-content: center;
+	gap: 0.3rem;
+	align-items: center;
+	cursor: pointer;
+	border: none;
+	padding: 10px 20px;
+	color: var(--text);
+	background-color: var(--error);
+	border-radius: 4px;
+	margin-top: 1rem;
+	transition: 0.1s ease-in-out;
+}
+
+.tasks-delete-all:hover {
+	background-color: var(--error-hover);
+}
+
+.delete-all-icon {
+	width: 1rem;
+	filter: invert(1);
 }

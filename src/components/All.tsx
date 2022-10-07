@@ -2,6 +2,7 @@ import { useState } from "react"
 import Task from "./Task"
 
 import { nanoid } from "nanoid"
+import trash from "../assets/icons/trash.svg"
 
 interface Task {
 	task: string
@@ -16,6 +17,7 @@ type Props = {
 	showActive?: boolean
 	showCompleted?: boolean
 }
+
 export default function AllTasks({ setTasks, tasks = [], handleCompleted, showActive = false, showCompleted = false }: Props) {
 	const [task, setUserTask] = useState("")
 	const getUserTask = (e: React.ChangeEvent<HTMLInputElement>) => setUserTask(e.target.value)
@@ -26,6 +28,9 @@ export default function AllTasks({ setTasks, tasks = [], handleCompleted, showAc
 		const newTask: Task = { task, completed: false, id: nanoid() }
 		setTasks([...tasks, newTask])
 	}
+
+	const handleDelete = (taskRemove: Task) => setTasks(tasks.filter(task => task.id !== taskRemove.id))
+
 	if (showActive) {
 		const getOnlyActives = tasks.filter(task => !task.completed)
 		return (
@@ -52,7 +57,19 @@ export default function AllTasks({ setTasks, tasks = [], handleCompleted, showAc
 		return (
 			<div className="tasks">
 				{getOnlyCompleted.length ? (
-					getOnlyCompleted.map(task => <Task task={task} key={task.id} handleCompleted={handleCompleted} showCompleted />)
+					<div className="tasks-completed">
+						{getOnlyCompleted.map(task => (
+							<Task task={task} key={task.id} showCompleted handleCompleted={handleCompleted} handleDelete={handleDelete} />
+						))}
+						<span className="tasks-container-delete">
+							<button className="tasks-delete-all" onClick={() => setTasks([])}>
+								Delete All
+								<small>
+									<img src={trash} className="delete-all-icon" alt="remove all tasks icon" />
+								</small>
+							</button>
+						</span>
+					</div>
 				) : (
 					<p className="empty-active">You have 0 completed tasks</p>
 				)}

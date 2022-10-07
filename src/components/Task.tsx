@@ -6,9 +6,9 @@ interface Task {
 	id: string
 }
 
-type Props = { task: Task; handleCompleted: (task: Task) => void; showCompleted?: boolean }
+type Props = { task: Task; handleCompleted: (task: Task) => void; handleDelete?: (task: Task) => void; showCompleted?: boolean }
 
-export default function Task({ task, handleCompleted, showCompleted = false }: Props) {
+export default function Task({ handleCompleted, handleDelete = () => {}, task, showCompleted = false }: Props) {
 	return (
 		<span className="task-container">
 			<div>
@@ -17,11 +17,13 @@ export default function Task({ task, handleCompleted, showCompleted = false }: P
 					{task.task}
 				</label>
 			</div>
-			{showCompleted && (
-				<button onClick={() => console.log("deleting...")}>
-					<img src={trash} className="trash" alt="delete task icon" />
-				</button>
-			)}
+			<span>
+				{showCompleted && (
+					<button className="task-delete" onClick={() => handleDelete(task)}>
+						<img src={trash} className="task-delete-icon" alt="delete task icon" />
+					</button>
+				)}
+			</span>
 		</span>
 	)
 }
