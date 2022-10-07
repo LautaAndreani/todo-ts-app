@@ -127,7 +127,6 @@ form > input[type="text"] {
 .empty-active {
 	text-align: center;
 	color: var(--error);
-	font-weight: bold;
 	margin-top: 1rem;
 }
 

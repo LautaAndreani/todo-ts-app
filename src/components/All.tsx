@@ -2,18 +2,13 @@ import { useState } from "react"
 import Task from "./Task"
 
 import { nanoid } from "nanoid"
-import trash from "../assets/icons/trash.svg"
-
-interface Task {
-	task: string
-	completed: boolean
-	id: string
-}
+import DeleteBtn from "./DeleteButton"
+import { Task as TasksTypes } from "../types/types"
 
 type Props = {
-	tasks: Task[]
-	setTasks: React.Dispatch<React.SetStateAction<Task[]>>
-	handleCompleted: (task: Task) => void
+	tasks: TasksTypes[]
+	setTasks: React.Dispatch<React.SetStateAction<TasksTypes[]>>
+	handleCompleted: (task: TasksTypes) => void
 	showActive?: boolean
 	showCompleted?: boolean
 }
@@ -25,11 +20,11 @@ export default function AllTasks({ setTasks, tasks = [], handleCompleted, showAc
 	const handleTask = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
-		const newTask: Task = { task, completed: false, id: nanoid() }
+		const newTask: TasksTypes = { task, completed: false, id: nanoid() }
 		setTasks([...tasks, newTask])
 	}
 
-	const handleDelete = (taskRemove: Task) => setTasks(tasks.filter(task => task.id !== taskRemove.id))
+	const handleDelete = (taskRemove: TasksTypes) => setTasks(tasks.filter(task => task.id !== taskRemove.id))
 
 	if (showActive) {
 		const getOnlyActives = tasks.filter(task => !task.completed)
@@ -45,7 +40,7 @@ export default function AllTasks({ setTasks, tasks = [], handleCompleted, showAc
 					{getOnlyActives.length ? (
 						getOnlyActives.map(task => <Task task={task} key={task.id} handleCompleted={handleCompleted} />)
 					) : (
-						<p className="empty-active">You have 0 active tasks</p>
+						<p className="empty-active">You have 0 active tasks, congrats 🎉</p>
 					)}
 				</div>
 			</div>
@@ -61,14 +56,7 @@ export default function AllTasks({ setTasks, tasks = [], handleCompleted, showAc
 						{getOnlyCompleted.map(task => (
 							<Task task={task} key={task.id} showCompleted handleCompleted={handleCompleted} handleDelete={handleDelete} />
 						))}
-						<span className="tasks-container-delete">
-							<button className="tasks-delete-all" onClick={() => setTasks([])}>
-								Delete All
-								<small>
-									<img src={trash} className="delete-all-icon" alt="remove all tasks icon" />
-								</small>
-							</button>
-						</span>
+						<DeleteBtn setTasks={setTasks} />
 					</div>
 				) : (
 					<p className="empty-active">You have 0 completed tasks</p>

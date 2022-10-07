@@ -13,7 +13,7 @@ export default function Task({ handleCompleted, handleDelete = () => {}, task, s
 		<span className="task-container">
 			<div>
 				<input type="checkbox" id={task.id} value="first_task" onClick={() => handleCompleted(task)} defaultChecked={task.completed} />
-				<label htmlFor={task.id} className={`task-label ${showCompleted && "task-checked"}`}>
+				<label htmlFor={task.id} className={`task-label ${task.completed && "task-checked"}`}>
 					{task.task}
 				</label>
 			</div>

@@ -2,15 +2,10 @@ import { useState } from "react"
 import AllTasks from "./All"
 import Tab from "./Tab"
 import { nanoid } from "nanoid"
+import { Task } from "../types/types"
 
 type ActualTabs = "All" | "Active" | "Completed"
 const tabs: ActualTabs[] = ["All", "Active", "Completed"]
-
-interface Task {
-	task: string
-	completed: boolean
-	id: string
-}
 
 export default function Tabs() {
 	const [actualTab, setActualTab] = useState<ActualTabs>("All")
