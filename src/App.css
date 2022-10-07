@@ -164,6 +164,7 @@ form > input[type="text"] {
 	border-radius: 4px;
 	margin-top: 1rem;
 	transition: 0.1s ease-in-out;
+	margin-left: auto;
 }
 
 .tasks-delete-all:hover {
@@ -174,7 +175,6 @@ form > input[type="text"] {
 	width: 1rem;
 	filter: invert(1);
 }
-
 @media screen and (max-width: 1200px) {
 	.tab-container {
 		width: 60%;

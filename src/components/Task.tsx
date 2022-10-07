@@ -17,7 +17,7 @@ export default function Task({ handleCompleted, handleDelete = () => {}, task, s
 					{task.task}
 				</label>
 			</div>
-			<span>
+			<span className="task-remove">
 				{showCompleted && (
 					<button className="task-delete" onClick={() => handleDelete(task)}>
 						<img src={trash} className="task-delete-icon" alt="delete task icon" />
