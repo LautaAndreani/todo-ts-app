@@ -1,4 +1,4 @@
-type ActualTabs = "All" | "Active" | "Completed"
+import { ActualTabs } from "../types/types"
 
 type Props = {
 	title: ActualTabs
