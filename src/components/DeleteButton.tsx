@@ -1,7 +1,7 @@
 import trash from "../assets/icons/trash.svg"
 import { Task } from "../types/types"
 
-type Props = { handleDeleteAllCompleted: React.Dispatch<React.SetStateAction<Task[]>> }
+type Props = { handleDeleteAllCompleted: () => void }
 
 export default function DeleteBtn({ handleDeleteAllCompleted }: Props) {
 	return (
