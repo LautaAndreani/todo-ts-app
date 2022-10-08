@@ -18,9 +18,9 @@ export default function Tabs() {
 	}
 
 	const contentTabs = {
-		All: () => <TaskView setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} />,
-		Active: () => <TaskView setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} showActive />,
-		Completed: () => <TaskView setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} showCompleted />,
+		All: () => <TaskView {...{ setTasks, tasks, handleCompleted }} />,
+		Active: () => <TaskView {...{ setTasks, tasks, handleCompleted }} showActive />,
+		Completed: () => <TaskView {...{ setTasks, tasks, handleCompleted }} showCompleted />,
 	}
 	const ActualContentTab = contentTabs[actualTab]
 
