@@ -10,7 +10,7 @@ const tabs: ActualTabs[] = ["All", "Active", "Completed"]
 
 export default function Tabs() {
 	const [actualTab, setActualTab] = useState<ActualTabs>("All")
-	const [tasks, setTasks] = useState<Task[]>([{ task: "Testing", completed: false, id: nanoid() }]) // TODO task only for example, remove before commit
+	const [tasks, setTasks] = useState<Task[]>([{ task: "Testing", completed: false, id: nanoid() }])
 
 	const handleCompleted = (taskCompleted: Task) => {
 		const getTask = tasks.find(task => task.id === taskCompleted.id)
