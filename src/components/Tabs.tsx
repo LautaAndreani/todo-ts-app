@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Task } from "../types/types"
-import AllTasks from "./All"
+import TaskView from "./TaskView"
 import Tab from "./Tab"
 
 import { nanoid } from "nanoid"
@@ -18,9 +18,9 @@ export default function Tabs() {
 	}
 
 	const contentTabs = {
-		All: () => <AllTasks setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} />,
-		Active: () => <AllTasks setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} showActive />,
-		Completed: () => <AllTasks setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} showCompleted />,
+		All: () => <TaskView setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} />,
+		Active: () => <TaskView setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} showActive />,
+		Completed: () => <TaskView setTasks={setTasks} tasks={tasks} handleCompleted={handleCompleted} showCompleted />,
 	}
 	const ActualContentTab = contentTabs[actualTab]
 
