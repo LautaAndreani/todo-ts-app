@@ -4,11 +4,11 @@ import { Task as TaskTypes } from "../types/types"
 type Props = {
 	task: TaskTypes
 	handleCompleted: (task: TaskTypes) => void
-	handleDelete?: (task: TaskTypes) => void
+	handleDeleteTask?: (task: TaskTypes) => void
 	showCompleted?: boolean
 }
 
-export default function Task({ handleCompleted, handleDelete = () => {}, task, showCompleted = false }: Props) {
+export default function Task({ handleCompleted, handleDeleteTask = () => {}, task, showCompleted = false }: Props) {
 	return (
 		<span className="task-container">
 			<div>
@@ -19,7 +19,7 @@ export default function Task({ handleCompleted, handleDelete = () => {}, task, s
 			</div>
 			<span className="task-remove">
 				{showCompleted && (
-					<button className="task-delete" onClick={() => handleDelete(task)}>
+					<button className="task-delete" onClick={() => handleDeleteTask(task)}>
 						<img src={trash} className="task-delete-icon" alt="delete task icon" />
 					</button>
 				)}

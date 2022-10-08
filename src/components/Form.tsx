@@ -1,13 +1,13 @@
 type Props = {
-	handleTask: (e: React.FormEvent<HTMLFormElement>) => void
-	getUserTask: (e: React.ChangeEvent<HTMLInputElement>) => void
+	handleCreateTask: (e: React.FormEvent<HTMLFormElement>) => void
+	getInputValue: (e: React.ChangeEvent<HTMLInputElement>) => void
 	task: string
 }
 
-export default function Form({ handleTask, getUserTask, task }: Props) {
+export default function Form({ handleCreateTask, getInputValue, task }: Props) {
 	return (
-		<form className="all" onSubmit={handleTask}>
-			<input type="text" className="all-input" placeholder="add details" autoFocus onChange={getUserTask} />
+		<form className="all" onSubmit={handleCreateTask}>
+			<input type="text" className="all-input" placeholder="add details" autoFocus onChange={getInputValue} />
 			<button type="submit" className={`all-input all-btn ${!task ? "disabled-btn" : ""}`} disabled={!task}>
 				Add
 			</button>

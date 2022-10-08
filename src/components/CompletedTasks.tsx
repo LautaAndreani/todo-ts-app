@@ -4,19 +4,19 @@ import Task from "./Task"
 
 type Props = {
 	handleCompleted: (task: TaskTypes) => void
-	handleDelete: (taskRemove: TaskTypes) => void
-	handleDeleteCompleted: () => void
+	handleDeleteTask: (taskRemove: TaskTypes) => void
+	handleDeleteAllCompleted: () => void
 	getOnlyCompleted: TaskTypes[]
 }
 
-export default function CompletedTask({ getOnlyCompleted, handleCompleted, handleDelete, handleDeleteCompleted }: Props) {
+export default function CompletedTask({ getOnlyCompleted, handleCompleted, handleDeleteTask, handleDeleteAllCompleted }: Props) {
 	if (getOnlyCompleted.length) {
 		return (
 			<>
 				{getOnlyCompleted.map(task => (
-					<Task task={task} key={task.id} showCompleted handleCompleted={handleCompleted} handleDelete={handleDelete} />
+					<Task task={task} key={task.id} showCompleted handleCompleted={handleCompleted} handleDeleteTask={handleDeleteTask} />
 				))}
-				<DeleteBtn handleDeleteCompleted={handleDeleteCompleted} />
+				<DeleteBtn handleDeleteAllCompleted={handleDeleteAllCompleted} />
 			</>
 		)
 	}

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import Task from "./Task"
 import { Task as TasksTypes } from "../types/types"
 
@@ -17,18 +17,19 @@ type Props = {
 
 export default function TaskView({ setTasks, tasks = [], handleCompleted, showActive = false, showCompleted = false }: Props) {
 	const [task, setUserTask] = useState("")
-	const getUserTask = (e: React.ChangeEvent<HTMLInputElement>) => setUserTask(e.target.value)
 
-	const handleTask = (e: React.FormEvent<HTMLFormElement>) => {
+	const getInputValue = (e: React.ChangeEvent<HTMLInputElement>) => setUserTask(e.target.value)
+
+	const handleCreateTask = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
 		const newTask: TasksTypes = { task, completed: false, id: nanoid() }
 		setTasks([...tasks, newTask])
 	}
 
-	const handleDelete = (taskRemove: TasksTypes) => setTasks(tasks.filter(task => task.id !== taskRemove.id))
+	const handleDeleteTask = (taskRemove: TasksTypes) => setTasks(tasks.filter(task => task.id !== taskRemove.id))
 
-	const handleDeleteCompleted = () => {
+	const handleDeleteAllCompleted = () => {
 		const getNotCompletes = tasks.filter(task => !task.completed)
 		setTasks(getNotCompletes)
 	}
@@ -37,7 +38,7 @@ export default function TaskView({ setTasks, tasks = [], handleCompleted, showAc
 		const getOnlyActives = tasks.filter(task => !task.completed)
 		return (
 			<div className="all-container">
-				<Form task={task} handleTask={handleTask} getUserTask={getUserTask} />
+				<Form {...{ task, handleCreateTask, getInputValue }} />
 				<div className="tasks">
 					<ActiveTasks {...{ getOnlyActives, handleCompleted }} />
 				</div>
@@ -49,14 +50,14 @@ export default function TaskView({ setTasks, tasks = [], handleCompleted, showAc
 		const getOnlyCompleted = tasks.filter(task => task.completed)
 		return (
 			<div className="tasks tasks-completed">
-				<CompletedTask {...{ getOnlyCompleted, handleCompleted, handleDelete, handleDeleteCompleted }} />
+				<CompletedTask {...{ getOnlyCompleted, handleCompleted, handleDeleteTask, handleDeleteAllCompleted }} />
 			</div>
 		)
 	}
 
 	return (
 		<div className="all-container">
-			<Form handleTask={handleTask} getUserTask={getUserTask} task={task} />
+			<Form {...{ task, handleCreateTask, getInputValue }} />
 			<div className="tasks">
 				{tasks.map(task => (
 					<Task task={task} key={task.id} handleCompleted={handleCompleted} />
