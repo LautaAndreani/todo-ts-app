@@ -26,3 +26,7 @@ npm i
 
 npm run dev
 ```
+
+## Preview
+
+![preview image](/src/assets/preview.png "todoapp preview")
